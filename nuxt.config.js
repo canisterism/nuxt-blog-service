@@ -44,7 +44,7 @@ module.exports = {
   ** Axios module configuration
   */
   axios: {
-    baseURL: 'https://<myproject-id>.firebaseio.com'
+    baseURL: 'https://nuxt-blog-service-95ea2.firebaseio.com'
   },
 
   /*
