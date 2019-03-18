@@ -46,7 +46,9 @@ module.exports = {
   axios: {
     baseURL: 'https://nuxt-blog-service-95ea2.firebaseio.com'
   },
-
+  router: {
+    middleware: ['auth-cookies']
+  },
   /*
   ** Build configuration
   */
