@@ -8,10 +8,13 @@ export const getters = {
   user: state => state.user
 }
 
-export const mutation = {
+export const mutations = {
   setUser(state, { user }) {
     state.user = user
     state.isLoggedIn = true
+  },
+  updateUser(state, { user }) {
+    state.user = user
   }
 }
 
@@ -25,7 +28,7 @@ export const actions = {
     const payload = {}
     payload[id] = { id }
     await this.$axios.$patch(`/users.json`, payload)
-    const user = await this.$axios.$get(`/user/${id}.json`)
+    const user = await this.$axios.$get(`/users/${id}.json`)
     if (!user.id) throw new Error('Invalid user')
     commit('setUser', { user })
   }

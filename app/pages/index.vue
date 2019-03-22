@@ -26,8 +26,10 @@ import Cookies from 'universal-cookie'
 
 export default {
   asyncData({ redirect, store }) {
+    // eslint-disable-next-line
+    console.log(store)
     if (store.getters.user) {
-      redirect('/posts')
+      redirect('/posts/')
     }
     return {
       isCreateMode: false,
@@ -51,16 +53,16 @@ export default {
           this.$notify({
             type: 'success',
             title: 'アカウント作成完了',
-            message: `${this.formData.id}として登録しました。`,
+            message: `${this} として登録しました`,
             position: 'bottom-right',
             duration: 1000
           })
           cookies.set('user', JSON.stringify(this.user))
           this.$router.push('/posts/')
-        } catch {
+        } catch (e) {
           this.$notify.error({
             title: 'アカウント作成失敗',
-            message: '既に登録されているか、不正なユーザーIDです。',
+            message: '既に登録されているか、不正なユーザー ID です',
             position: 'bottom-right',
             duration: 1000
           })
@@ -70,19 +72,19 @@ export default {
           await this.login({ ...this.formData })
           this.$notify({
             type: 'success',
-            title: 'ログイン完了',
-            message: `${this.formData.id}としてログインしました。`,
-            position: 'top-right',
-            duration: 2000
+            title: 'ログイン成功',
+            message: `${this.formData.id} としてログインしました`,
+            position: 'bottom-right',
+            duration: 1000
           })
           cookies.set('user', JSON.stringify(this.user))
           this.$router.push('/posts/')
-        } catch {
+        } catch (e) {
           this.$notify.error({
-            title: 'アカウント作成失敗',
-            message: '不正なユーザーIDです。',
-            position: 'top-right',
-            duration: 2000
+            title: 'ログイン失敗',
+            message: '不正なユーザー ID です',
+            position: 'bottom-right',
+            duration: 1000
           })
         }
       }
