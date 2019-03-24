@@ -26,8 +26,6 @@ import Cookies from 'universal-cookie'
 
 export default {
   asyncData({ redirect, store }) {
-    // eslint-disable-next-line
-    console.log(store)
     if (store.getters.user) {
       redirect('/posts/')
     }

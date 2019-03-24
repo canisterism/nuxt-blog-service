@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import moment from '~/plugins/moment'
 
 export const state = () => ({
@@ -52,5 +51,11 @@ export const actions = {
           }
         })
       )
+  },
+  async fetchPost({ commit }, { id }) {
+    const post = await this.$axios.$get(`/posts/${id}.json`)
+    commit('addPost', {
+      post: { id, ...post }
+    })
   }
 }
